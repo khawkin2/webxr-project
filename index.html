@@ -16,7 +16,28 @@
     <!-- Starting an immersive WebXR session requires user interaction.
     We start this one with a simple button. -->
     <button onclick="activateXR()">Start Hello WebXR</button>
+    <script> 
+      async function activateXR() {
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight);
 
+        var renderer = new THREE.WebGLRenderer({antialias: true});
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        $('body').append(renderer.domElement);
+
+        var geometry = new THREE.BoxGeometry(1,1,1);
+        var material = new THREE.MeshBasicMaterial({color: 0xff0000});
+        var cube = new THREE.Mesh(geometry,material);
+        scene.add(cube);
+
+        cube.position.z = -5;
+        cube.rotation.x = 10;
+        cube.rotation.y = 5;
+
+        renderer.render(scene,camera);
+      }
+    </script>
+    <!--
     <script>
       async function activateXR() {
         // Add a canvas element and initialize a WebGL context that is compatible with WebXR.
@@ -130,5 +151,7 @@
         session.requestAnimationFrame(onXRFrame);
       }
     </script>
+    -->
+
   </body>
 </html>
