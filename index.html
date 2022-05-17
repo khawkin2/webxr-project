@@ -42,15 +42,17 @@
         // ];
 
         const material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
 
         // Create the cube and add it to the demo scene.
-        const cube = new THREE.Mesh(
-          new THREE.BoxBufferGeometry(20, 20, 20, 20, 20, 20),
-          //materials
-          material
-        );
-        cube.position.set(1, 1, 1);
+        const cube = new THREE.Mesh (geometry, material);
+        //cube.position.set(1, 1, 1);
         scene.add(cube);
+        
+        //added from https://redstapler.co/three-js-tutorial-hello-world/
+        cube.positiom.z = -5;
+        cube.position.x = 10;
+        cube.position.y = 5;
 
         /*
             Set up rendering using three.js
@@ -62,6 +64,8 @@
           preserveDrawingBuffer: true,
           canvas: canvas,
           context: gl,
+          //added from https://redstapler.co/three-js-tutorial-hello-world/
+          antialias: true,
         });
         renderer.autoClear = false;
 
@@ -110,6 +114,7 @@
 
             const viewport = session.renderState.baseLayer.getViewport(view);
             renderer.setSize(viewport.width, viewport.height);
+            $('body').append(renderer.domElement);
 
             // Use the view's transform matrix and projection matrix to configure the THREE.camera.
             camera.matrix.fromArray(view.transform.matrix);
