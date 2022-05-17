@@ -6,7 +6,6 @@
       name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
     <title>Hello WebXR!</title>
 
     <!-- three.js -->
@@ -40,9 +39,8 @@
           new THREE.MeshBasicMaterial({ color: 0x00ffff }),
           new THREE.MeshBasicMaterial({ color: 0xffff00 }),
         ];
-
-        // const material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
-        const geometry = new THREE.BoxGeometry(1, 1, 1);
+        
+        const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
 
         // Create the cube and add it to the demo scene.
         const cube = new THREE.Mesh (geometry, materials);
