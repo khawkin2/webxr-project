@@ -48,11 +48,6 @@
         const cube = new THREE.Mesh (geometry, materials);
         cube.position.set(1, 1, 1);
         scene.add(cube);
-        
-        //added from https://redstapler.co/three-js-tutorial-hello-world/
-        // cube.position.z = -1;
-        // cube.position.x = 2;
-        // cube.position.y = 1;
 
         /*
             Set up rendering using three.js
@@ -116,7 +111,7 @@
             renderer.setSize(viewport.width, viewport.height);
             
             //added from https://redstapler.co/three-js-tutorial-hello-world/
-            $('body').append(renderer.domElement);
+            //$('body').append(renderer.domElement);
 
             // Use the view's transform matrix and projection matrix to configure the THREE.camera.
             camera.matrix.fromArray(view.transform.matrix);
