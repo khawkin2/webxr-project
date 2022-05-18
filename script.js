@@ -88,9 +88,6 @@ async function activateXR() {
 
       const viewport = session.renderState.baseLayer.getViewport(view);
       renderer.setSize(viewport.width, viewport.height);
-      
-      //added from https://redstapler.co/three-js-tutorial-hello-world/
-      //$('body').append(renderer.domElement);
 
       // Use the view's transform matrix and projection matrix to configure the THREE.camera.
       camera.matrix.fromArray(view.transform.matrix);
