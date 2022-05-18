@@ -1,17 +1,19 @@
 async function activateXR() {
-  // Add a canvas element and initialize a WebGL context that is compatible with WebXR.
+  // Add a canvas element 
   const canvas = document.createElement("canvas");
     document.body.appendChild(canvas);
+
+  // Initialize a WebGL context that is compatible with WebXR.
   const gl = canvas.getContext("webgl", { xrCompatible: true });
 
-  // To be continued in upcoming steps.
+  /*
+      INITIALIZE THREE.js AND CREATE A SCENE
+  */
+  
+  // Create a Scene
   const scene = new THREE.Scene();
 
-  /*
-      Initialize three.js and create a Scene
-  */
-
-  // The cube will have a different color on each side.
+  // Select colour(s) to use
   const materials = [
     new THREE.MeshBasicMaterial({ color: 0xff0000 }),
     new THREE.MeshBasicMaterial({ color: 0x0000ff }),
@@ -21,15 +23,18 @@ async function activateXR() {
     new THREE.MeshBasicMaterial({ color: 0xffff00 }),
   ];
 
+  // Select desired shape (in this case Cube)
   const geometry = new THREE.BoxBufferGeometry(0.5, 0.5, 0.5);
 
-  // Create the cube and add it to the demo scene.
+  // Create the cube
   const cube = new THREE.Mesh (geometry, materials);
   cube.position.set(2.5, 2.5, 2.5);
+
+  // Add it to the demo scene.
   scene.add(cube);
 
   /*
-      Set up rendering using three.js
+      SET UP RENDERING USING THREE.js
   */
 
   // Set up the WebGLRenderer, which handles rendering to the session's base layer.
@@ -50,7 +55,7 @@ async function activateXR() {
   camera.matrixAutoUpdate = false;
 
   /*
-      Create an XRSession
+      CREATE AN XRSession
   */
 
   // Initialize a WebXR session using "immersive-ar".
@@ -64,7 +69,7 @@ async function activateXR() {
   const referenceSpace = await session.requestReferenceSpace("local");
 
   /*
-      Render the scene
+      RENDER THE SCENE
   */
 
   // Create a render loop that allows us to draw on the AR view.
