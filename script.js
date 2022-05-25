@@ -45,7 +45,7 @@ async function activateXR() {
    const material = new THREE.MeshBasicMaterial( { color: 0x900C3F, wireframe: true } );
    const torus = new THREE.Mesh( geometry, material );
 
-   torus.position(3, 3, 3);
+   torus.position.set(3, 3, 3);
    scene.add( torus );
   
   
