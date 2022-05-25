@@ -51,7 +51,7 @@ async function activateXR() {
 
   // Create the cube
   const cube = new THREE.Mesh (geometry, materials);
-  cube.position.set(5, 5, 5);
+  cube.position.set(2, 2, 2);
 
   // Add it to the demo scene.
   scene.add(cube);
