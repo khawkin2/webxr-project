@@ -42,10 +42,10 @@ async function activateXR() {
    *  CREATE A SHAPE
    */
 
-   const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+   const geometry = new THREE.BoxGeometry( 0.5, 0.5, 0.5 );
    const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
    const cube = new THREE.Mesh( geometry, material ); 
-   cube.position.set(0, 3, 0);
+   cube.position.set(1, 1, 1);
    scene.add( cube );
   
   
