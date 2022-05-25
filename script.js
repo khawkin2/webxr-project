@@ -42,7 +42,7 @@ async function activateXR() {
    */
 
    const geometry = new THREE.TorusGeometry();
-   const material = new THREE.MeshBasicMaterial( { color: 0x900C3F, wireframe: true } );
+   const material = new THREE.MeshBasicMaterial( { color: 0x900C3F} );
    const torus = new THREE.Mesh( geometry, material );
    scene.add( torus );
   
