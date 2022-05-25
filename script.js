@@ -43,20 +43,15 @@ async function activateXR() {
 
   // Select colour(s) to use
   const materials = [
-    new THREE.MeshBasicMaterial({ color: 0xff0000 }),
-    new THREE.MeshBasicMaterial({ color: 0x0000ff }),
-    new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
-    new THREE.MeshBasicMaterial({ color: 0xff00ff }),
-    new THREE.MeshBasicMaterial({ color: 0x00ffff }),
-    new THREE.MeshBasicMaterial({ color: 0xffff00 }),
+    new THREE.MeshBasicMaterial({ color: 0xff00ff, wireframe: true })
   ];
 
   // Select desired shape (in this case Cube)
-  const geometry = new THREE.BoxBufferGeometry(0.5, 0.5, 0.5);
+  const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
 
   // Create the cube
   const cube = new THREE.Mesh (geometry, materials);
-  cube.position.set(2.5, 2.5, 2.5);
+  cube.position.set(5, 5, 5);
 
   // Add it to the demo scene.
   scene.add(cube);
