@@ -34,6 +34,7 @@ async function activateXR() {
     canvas: canvas,
     context: gl,
     antialias: true,
+    logarithmicDepthBuffer: true
   });
   renderer.autoClear = false;
 
@@ -41,10 +42,10 @@ async function activateXR() {
    *  CREATE A SHAPE
    */
 
-   const geometry = new THREE.TorusGeometry();
-   const material = new THREE.MeshNormalMaterial( { color: 0x900C3F, wireframe: false} );
-   const torus = new THREE.Mesh( geometry, material );
-   scene.add( torus );
+   const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+  const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+  const cube = new THREE.Mesh( geometry, material );
+  scene.add( cube );
   
   
   /**
