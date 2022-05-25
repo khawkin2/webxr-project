@@ -6,12 +6,40 @@ async function activateXR() {
   // Initialize a WebGL context that is compatible with WebXR.
   const gl = canvas.getContext("webgl", { xrCompatible: true });
 
-  /*
-      INITIALIZE THREE.js AND CREATE A SCENE
-  */
+  /**
+   *  INITIALIZE THREE.js AND CREATE A SCENE
+   */
   
   // Create a Scene
   const scene = new THREE.Scene();
+
+  
+  //Create a Camera
+  const deviceFOV = Math.sqrt(Math.pow(window.innerHeight, 2) + Math.pow(window.innerWidth, 2));
+  const camera = new THREE.PerspectiveCamera(deviceFOV, window.width/window.height, 0.1, 1000);
+
+  // The API directly updates the camera matrices.
+  // Disable matrix auto updates so three.js doesn't attempt
+  // to handle the matrices independently.
+  camera.matrixAutoUpdate = false;
+
+  /**
+   *  SET UP RENDERING USING THREE.js
+   */
+
+  // Set up the WebGLRenderer, which handles rendering to the session's base layer.
+  const renderer = new THREE.WebGLRenderer({
+    alpha: true,
+    preserveDrawingBuffer: true,
+    canvas: canvas,
+    context: gl,
+    antialias: true,
+  });
+  renderer.autoClear = false;
+
+  /**
+   *  CREATE A SHAPE
+   */
 
   // Select colour(s) to use
   const materials = [
@@ -32,31 +60,10 @@ async function activateXR() {
 
   // Add it to the demo scene.
   scene.add(cube);
-
-  /*
-      SET UP RENDERING USING THREE.js
-  */
-
-  // Set up the WebGLRenderer, which handles rendering to the session's base layer.
-  const renderer = new THREE.WebGLRenderer({
-    alpha: true,
-    preserveDrawingBuffer: true,
-    canvas: canvas,
-    context: gl,
-    //added from https://redstapler.co/three-js-tutorial-hello-world/
-    antialias: true,
-  });
-  renderer.autoClear = false;
-
-  // The API directly updates the camera matrices.
-  // Disable matrix auto updates so three.js doesn't attempt
-  // to handle the matrices independently.
-  const camera = new THREE.PerspectiveCamera();
-  camera.matrixAutoUpdate = false;
-
-  /*
-      CREATE AN XRSession
-  */
+  
+  /**
+   *  CREATE AN XRSession
+   */
 
   // Initialize a WebXR session using "immersive-ar".
   const session = await navigator.xr.requestSession("immersive-ar");
@@ -68,8 +75,8 @@ async function activateXR() {
   // near the viewer's position at the time the session was created.
   const referenceSpace = await session.requestReferenceSpace("local");
 
-  /*
-      RENDER THE SCENE
+  /**
+   *  RENDER THE SCENE
   */
 
   // Create a render loop that allows us to draw on the AR view.
@@ -92,6 +99,7 @@ async function activateXR() {
       const view = pose.views[0];
 
       const viewport = session.renderState.baseLayer.getViewport(view);
+      renderer.setPixelRatio(viewport.devicePixelRatio);
       renderer.setSize(viewport.width, viewport.height);
 
       // Use the view's transform matrix and projection matrix to configure the THREE.camera.
