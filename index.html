@@ -2,8 +2,13 @@
 
 <body>
   <a-scene>
-    <a-plane src="groundTexture.jpg" rotation="-90 0 0" width="30" height="30" repeat="10 10" color="grey"></a-plane>
+    <a-assets>
+      <img id="ground" src="groundTexture.jpg">
+      <img id="sky" src="skyTexture.jpg">
+    </a-assets>
+
+    <a-plane src="#ground" rotation="-90 0 0" width="30" height="30" repeat="10 10" color="grey"></a-plane>
     <a-box color="red" position="0 2 -5" rotation="0 45 45" scale="2 2 2"></a-box>
-    <a-sky src="skyTexture.jpg" color="blue"></a-sky>
+    <a-sky src="#sky" color="blue"></a-sky>
   </a-scene>
 </body>
