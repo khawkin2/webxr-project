@@ -2,8 +2,13 @@
 
 <body>
   <a-scene>
-    <a-plane rotation="-90 0 0" width="30" height="30" repeat="10 10" color="grey"></a-plane>
-    <a-box color="red" position="0 2 -5" rotation="0 45 45" scale="2 2 2"></a-box>
+    <a-assets> 
+      <img id="bird" src="a-frame-demo/bird.png">
+      <img id="squirrel" src="a-frame-demo/squirrel.png">
+    </a-assets>
+
+    <a-plane rotation="-90 0 0" width="30" height="30" repeat="10 10" color="green"></a-plane>
+    <a-entity geometry="primitive: box; width: 1; height: 1; depth: 1" src="#bird" color="pink"></a-entity>
     <a-sky color="blue"></a-sky>
   </a-scene>
 </body>
