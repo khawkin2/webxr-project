@@ -34,6 +34,7 @@
 
       <a-image
         color="#E0B394" src="#leaf" position="0 2 -5" rotation="0 0 0" scale="2 2 2" id="leaf-1"
+        rotate__colour="event: click"
         animation__position="property: object3D.position.y; to: 2.2; dir: alternate; dur: 2000; loop: true"
         animation__mouseenter="property: scale; to: 2.3 2.3 2.3; dur: 300; startEvents: mouseenter"
         animation__mouseleave="property: scale; to: 2 2 2; dur: 300; startEvents: mouseleave">
@@ -59,7 +60,7 @@
   </body>
 </html>
 <script>
-  AFRAME.registerComponent('scale-on-mouseenter', {
+  var componentData = {
     schema: {
       to: {default: '2.5 2.5 2.5', type: 'vec3'}
     },
@@ -75,17 +76,17 @@
 
       this.el.addEventListener('mousedown', function () {
         console.log("mousedown");
-        rotateColour(el);
+        rotateColour(this.el);
       });
 
       this.el.addEventListener('mouseup', function () {
         console.log("mouseup");
-        rotateColour(el);
+        rotateColour(this.el);
       });
 
       this.el.addEventListener('click', function () {
         console.log("click");
-        rotateColour(el);
+        rotateColour(this.el);
       });
     },
 
@@ -122,6 +123,8 @@
             break;
         }
     }
-  });
+  }
+
+  AFRAME.registerComponent('rotate__colour', componentData);
 
 </script>
