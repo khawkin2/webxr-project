@@ -65,6 +65,8 @@
     },
 
     init: function () {
+      console.log("initializing component");
+
       var data = this.data;
       var el = this.el;
       this.el.addEventListener('mouseenter', function () {
@@ -73,7 +75,23 @@
 
       this.el.addEventListener('mousedown', function () {
         console.log("mousedown");
-        var colour = el.style.color;
+        rotateColour(el);
+      });
+
+      this.el.addEventListener('mouseup', function () {
+        console.log("mouseup");
+        rotateColour(el);
+      });
+
+      this.el.addEventListener('click', function () {
+        console.log("click");
+        rotateColour(el);
+      });
+    },
+
+    rotateColour: function(el) {
+      console.log("rotating colour");
+      var colour = el.style.color;
         switch(colour){
           case "#B2AC88" :
             document.documentElement(el).style.color = "#A4C8D5";
@@ -103,7 +121,6 @@
             document.documentElement(el).style.color = "#B2AC88";
             break;
         }
-      });
     }
   });
 
