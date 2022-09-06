@@ -24,6 +24,15 @@
             this.setAttribute('material', 'color', COLORS[lastIndex]);
             console.log('I was clicked at: ', evt.detail.intersection.point);
           });
+
+          this.el.addEventListener('mouseleave',function(){
+            var cur=document.getElementById("cursor-visual");
+            cur.emit("stopFuse");
+          });
+          this.el.addEventListener('mouseenter', function (evt) {
+            var cur=document.getElementById("cursor-visual");
+            cur.emit("startFuse");
+          });
         }
       });
       AFRAME.registerComponent('spot',{
